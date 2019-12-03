@@ -1,0 +1,26 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env"
+    ],
+    [
+      "@babel/preset-react"
+    ]
+  ],
+  "plugins": [
+    //装饰器配置使用旧版的stage0
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    //当装饰器配置为legacy:true时需要松散模式
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ]
+  ]
+}
