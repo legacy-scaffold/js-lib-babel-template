@@ -28,14 +28,14 @@ const git = simpleGit(workPath);
   };
 
   try {
-    spinner.text = "正在进行git提交操作";
+    spinner.start("正在进行git提交操作");
     await git.status();
     await git.init();
     await git.add("*");
     await git.commit("发布版本,并上传到gitee");
-    spinner.text = "所有文件提交成功!";
+    spinner.succeed("所有文件提交成功!");
   } catch (error) {
-    spinner.text = "文件提交失败!";
+    spinner.fail("文件提交失败!");
     throw error;
   } finally {
     spinner.stop();
