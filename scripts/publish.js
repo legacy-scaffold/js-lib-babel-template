@@ -43,7 +43,7 @@ const git = simpleGit(workPath);
   };
 
   try {
-    spinner.start("将编译结果push到gitee");
+    spinner.start("将编译结果push到git仓库");
     await git.push();
     spinner.succeed(green("push成功!"));
     spinner.succeed(green("发布成功!"));
