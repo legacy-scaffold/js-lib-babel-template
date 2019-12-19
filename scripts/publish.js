@@ -18,11 +18,11 @@ process.on("unhandledRejection", (error) => {
   const spinner = ora({ spinner: "arrow" });
   try {
     spinner.start(yellow.bold("正在将js转换成es5"));
-    spawn.sync("babel", [
-      path.resolve(__dirname, "../src/"),
-      "--out-dir",
-      path.resolve(__dirname, "../dist/")
-    ]);
+    // spawn.sync("babel", [
+    //   path.resolve(__dirname, "../src/"),
+    //   "--out-dir",
+    //   path.resolve(__dirname, "../dist/")
+    // ]);
     spinner.succeed(green("js文件转换成功!"));
   } catch (error) {
     spinner.fail(red("js文件转换失败!"));
@@ -38,8 +38,7 @@ process.on("unhandledRejection", (error) => {
     await git.commit(`${moment().format("YYYY年MM月DD日HH点mm分ss秒")}版本提交`);
     spawn.sync("npm", ["version", "patch"]);
     const { version } = await jsonfile.readFile(path.resolve(__dirname, "../package.json"));
-    console.log(version);
-
+    await git.tag([version]);
     spinner.succeed(green("所有文件提交成功!"));
   } catch (error) {
     spinner.fail(red("文件提交失败!"));
