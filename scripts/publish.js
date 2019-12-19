@@ -47,23 +47,23 @@ process.on("unhandledRejection", (error) => {
     spinner.stop();
   };
 
-  if ((await git.getRemotes()).length === 0) {
-    spinner.fail(red("该项目没有设置远程仓库"));
-  } else {
-    try {
-      spinner.succeed(green("检测到远程仓库"));
-      spinner.start(yellow.bold("将编译结果push到git仓库"));
-      await git.push();
-      spinner.succeed(green("push成功!"));
-      spinner.succeed(green("发布成功!"));
-    } catch (error) {
-      spinner.fail(red("push失败!"));
-      spinner.fail(red("发布失败!"));
-      throw error;
-    } finally {
-      spinner.stop();
-    };
-  };
+  // if ((await git.getRemotes()).length === 0) {
+  //   spinner.fail(red("该项目没有设置远程仓库"));
+  // } else {
+  //   try {
+  //     spinner.succeed(green("检测到远程仓库"));
+  //     spinner.start(yellow.bold("将编译结果push到git仓库"));
+  //     await git.push();
+  //     spinner.succeed(green("push成功!"));
+  //     spinner.succeed(green("发布成功!"));
+  //   } catch (error) {
+  //     spinner.fail(red("push失败!"));
+  //     spinner.fail(red("发布失败!"));
+  //     throw error;
+  //   } finally {
+  //     spinner.stop();
+  //   };
+  // };
 })();
 
 
