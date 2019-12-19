@@ -11,7 +11,7 @@ const git = simpleGit(workPath);
 
 
 (async function () {
-  const spinner = ora().start();
+  const spinner = ora("正在将js转换成es5").start();
   try {
     spinner.text = "正在将js转换成es5"
     spawn.sync("babel", [
