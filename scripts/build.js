@@ -12,9 +12,7 @@ const git = simpleGit(workPath);
 
 
 (async function () {
-  const spinner = ora({
-    spinner: "arrow"
-  });
+  const spinner = ora({ spinner: "arrow" });
   try {
     spinner.start("正在将js转换成es5");
     spawn.sync("babel", [
@@ -22,9 +20,9 @@ const git = simpleGit(workPath);
       "--out-dir",
       path.resolve(__dirname, "../dist/")
     ]);
-    spinner.succeed(green("转换成功!"));
+    spinner.succeed(green("js文件转换成功!"));
   } catch (error) {
-    spinner.fail(red("转换失败!"));
+    spinner.fail(red("js文件转换失败!"));
     throw error;
   } finally {
     spinner.stop();
