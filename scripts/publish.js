@@ -1,8 +1,8 @@
 const ora = require("ora");
 const path = require("path");
 const moment = require("moment");
-const jsonfile = require("jsonfile")
 const spawn = require("cross-spawn");
+const jsonfile = require("jsonfile");
 const simpleGit = require("simple-git/promise");
 const { red, green, yellow } = require("colors");
 
@@ -18,11 +18,11 @@ process.on("unhandledRejection", (error) => {
   const spinner = ora({ spinner: "arrow" });
   try {
     spinner.start(yellow.bold("正在将js转换成es5"));
-    // spawn.sync("babel", [
-    //   path.resolve(__dirname, "../src/"),
-    //   "--out-dir",
-    //   path.resolve(__dirname, "../dist/")
-    // ]);
+    spawn.sync("babel", [
+      path.resolve(__dirname, "../src/"),
+      "--out-dir",
+      path.resolve(__dirname, "../dist/")
+    ]);
     spinner.succeed(green("js文件转换成功!"));
   } catch (error) {
     spinner.fail(red("js文件转换失败!"));
@@ -53,7 +53,7 @@ process.on("unhandledRejection", (error) => {
     try {
       spinner.succeed(green("检测到远程仓库"));
       spinner.start(yellow.bold("将编译结果push到git仓库"));
-      console.log(await git.push({ "--follow-tags": true }));
+      await git.push({ "--follow-tags": true });
       spinner.succeed(green("push成功!"));
       spinner.succeed(green("发布成功!"));
     } catch (error) {
