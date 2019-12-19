@@ -1,7 +1,6 @@
 const ora = require("ora");
 const path = require("path");
-const chalk = require("chalk");
-const { red, green } = require("colors");
+const { red, green, yellow } = require("colors");
 const moment = require("moment");
 const spawn = require("cross-spawn");
 const simpleGit = require("simple-git/promise");
@@ -14,7 +13,7 @@ const git = simpleGit(workPath);
 (async function () {
   const spinner = ora({ spinner: "arrow" });
   try {
-    spinner.start("正在将js转换成es5");
+    spinner.start(yellow.bold("正在将js转换成es5"));
     spawn.sync("babel", [
       path.resolve(__dirname, "../src/"),
       "--out-dir",
@@ -29,7 +28,7 @@ const git = simpleGit(workPath);
   };
 
   try {
-    spinner.start("正在进行git提交操作");
+    spinner.start(yellow.bold("正在进行git提交操作"));
     await git.status();
     await git.init();
     await git.add("*");
@@ -43,7 +42,7 @@ const git = simpleGit(workPath);
   };
 
   try {
-    spinner.start("将编译结果push到git仓库");
+    spinner.start(yellow.bold("将编译结果push到git仓库"));
     await git.push();
     spinner.succeed(green("push成功!"));
     spinner.succeed(green("发布成功!"));
