@@ -9,6 +9,10 @@ const workPath = path.resolve(__dirname, "../");
 const git = simpleGit(workPath);
 
 
+process.on("unhandledRejection", (error) => {
+  console.log(red(error));
+  process.exit(0);
+});
 
 (async function () {
   const spinner = ora({ spinner: "arrow" });
@@ -29,7 +33,6 @@ const git = simpleGit(workPath);
 
   try {
     spinner.start(yellow.bold("正在进行git提交操作"));
-    await git.status();
     await git.init();
     await git.add("*");
     await git.commit(`${moment().format("YYYY年MM月DD日HH点mm分ss秒")}版本提交`);
@@ -40,25 +43,26 @@ const git = simpleGit(workPath);
   } finally {
     spinner.stop();
   };
-  const list = await git.getRemotes();
-  console.log(list);
-  // if (list) {
-  //   try {
-  //     spinner.start(yellow.bold("将编译结果push到git仓库"));
-  //     await git.push();
-  //     spinner.succeed(green("push成功!"));
-  //     spinner.succeed(green("发布成功!"));
-  //   } catch (error) {
-  //     spinner.fail(red("push失败!"));
-  //     spinner.fail(red("发布失败!"));
-  //     throw error;
-  //   } finally {
-  //     spinner.stop();
-  //   };
-  // } else {
 
-  // };
+  if ((await git.getRemotes()).length === 0) {
+    console.log(yellow.bold("该项目没有设置远程仓库"));
+  } else {
+    try {
+      spinner.start(yellow.bold("将编译结果push到git仓库"));
+      await git.push();
+      spinner.succeed(green("push成功!"));
+      spinner.succeed(green("发布成功!"));
+    } catch (error) {
+      spinner.fail(red("push失败!"));
+      spinner.fail(red("发布失败!"));
+      throw error;
+    } finally {
+      spinner.stop();
+    };
+  };
 })();
+
+
 
 
 
