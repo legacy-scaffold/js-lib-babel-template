@@ -40,19 +40,24 @@ const git = simpleGit(workPath);
   } finally {
     spinner.stop();
   };
+  const list = await git.listRemote();
+  console.log(list);
+  // if (list) {
+  //   try {
+  //     spinner.start(yellow.bold("将编译结果push到git仓库"));
+  //     await git.push();
+  //     spinner.succeed(green("push成功!"));
+  //     spinner.succeed(green("发布成功!"));
+  //   } catch (error) {
+  //     spinner.fail(red("push失败!"));
+  //     spinner.fail(red("发布失败!"));
+  //     throw error;
+  //   } finally {
+  //     spinner.stop();
+  //   };
+  // } else {
 
-  try {
-    spinner.start(yellow.bold("将编译结果push到git仓库"));
-    await git.push();
-    spinner.succeed(green("push成功!"));
-    spinner.succeed(green("发布成功!"));
-  } catch (error) {
-    spinner.fail(red("push失败!"));
-    spinner.fail(red("发布失败!"));
-    throw error;
-  } finally {
-    spinner.stop();
-  };
+  // };
 })();
 
 
