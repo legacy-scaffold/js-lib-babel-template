@@ -11,17 +11,17 @@ const git = simpleGit(workPath);
 
 
 (async function () {
-  const spinner = ora("正在将js转换成es5").start();
+  const spinner = ora("正在将js转换成es5");
   try {
-    spinner.text = "正在将js转换成es5"
+    spinner.start("正在将js转换成es5");
     spawn.sync("babel", [
       path.resolve(__dirname, "../src/"),
       "--out-dir",
       path.resolve(__dirname, "../dist/")
     ]);
-    spinner.text = "转换成功!";
+    spinner.succeed("转换成功!");
   } catch (error) {
-    spinner.text = "转换失败!";
+    spinner.fail("转换失败!");
     throw error;
   } finally {
     spinner.stop();
