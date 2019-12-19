@@ -48,7 +48,7 @@ process.on("unhandledRejection", (error) => {
     console.log(yellow.bold("该项目没有设置远程仓库"));
   } else {
     try {
-      spinner.succeed(yellow.bold("检测到远程仓库"));
+      spinner.succeed(green.bold("检测到远程仓库"));
       spinner.start(yellow.bold("将编译结果push到git仓库"));
       await git.push();
       spinner.succeed(green("push成功!"));
