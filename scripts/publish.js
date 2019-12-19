@@ -19,7 +19,7 @@ process.on("unhandledRejection", (error) => {
   try {
     spinner.start(yellow.bold("正在将js转换成es5"));
     spawn.sync("babel", [
-      path.resolve(__dirname, "../src/"),
+      path.resolve(__dirname, "../src/source/"),
       "--out-dir",
       path.resolve(__dirname, "../dist/")
     ]);
