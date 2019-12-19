@@ -40,7 +40,7 @@ const git = simpleGit(workPath);
   } finally {
     spinner.stop();
   };
-  const list = await git.listRemote();
+  const list = await git.getRemotes();
   console.log(list);
   // if (list) {
   //   try {
