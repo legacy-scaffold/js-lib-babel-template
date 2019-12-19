@@ -45,7 +45,7 @@ process.on("unhandledRejection", (error) => {
   };
 
   if ((await git.getRemotes()).length === 0) {
-    console.log(yellow.bold("该项目没有设置远程仓库"));
+    spinner.fail(red("该项目没有设置远程仓库"));
   } else {
     try {
       spinner.succeed(green("检测到远程仓库"));
