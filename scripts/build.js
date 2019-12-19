@@ -2,6 +2,7 @@ const ora = require("ora");
 const path = require("path");
 const chalk = require("chalk");
 const color = require("color");
+const moment = require("moment");
 const spawn = require("cross-spawn");
 const simpleGit = require("simple-git/promise");
 
@@ -32,7 +33,7 @@ const git = simpleGit(workPath);
     await git.status();
     await git.init();
     await git.add("*");
-    await git.commit("发布版本,并上传到gitee");
+    await git.commit(`${moment().format("YYYY年MM月DD日HH点mm分ss秒")}版本提交`);
     spinner.succeed("所有文件提交成功!");
   } catch (error) {
     spinner.fail("文件提交失败!");
