@@ -42,11 +42,18 @@ function (_React$Component) {
   _createClass(ComponentName, [{
     key: "render",
     value: function render() {
-      return _react["default"].createElement("div", null, null);
+      return _react["default"].createElement("div", null, "hello words");
     }
   }]);
 
   return ComponentName;
 }(_react["default"].Component);
 
-; // ReactDOM.render(<ComponentName/>,);
+;
+
+(function render() {
+  var mountNode = document.createElement("div");
+  document.body.appendChild(mountNode);
+
+  _reactDom["default"].render(_react["default"].createElement(ComponentName, null), mountNode);
+})();
