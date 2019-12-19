@@ -9,10 +9,10 @@ const workPath = path.resolve(__dirname, "../");
 const git = simpleGit(workPath);
 
 
-const spinner = ora();
+
 (async function () {
+  const spinner = ora().start();
   try {
-    spinner.start();
     spinner.text = "正在将js转换成es5"
     spawn.sync("babel", [
       path.resolve(__dirname, "../src/"),
