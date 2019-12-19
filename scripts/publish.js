@@ -35,6 +35,7 @@ process.on("unhandledRejection", (error) => {
     await git.init();
     await git.add("*");
     await git.commit(`${moment().format("YYYY年MM月DD日HH点mm分ss秒")}版本提交`);
+    spawn.sync("npm", ["version", "--patch"]);
     spinner.succeed(green("所有文件提交成功!"));
   } catch (error) {
     spinner.fail(red("文件提交失败!"));
