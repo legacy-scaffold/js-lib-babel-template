@@ -1,12 +1,11 @@
 const ora = require("ora");
 const path = require("path");
-const { red, green, yellow } = require("colors");
 const moment = require("moment");
 const spawn = require("cross-spawn");
 const simpleGit = require("simple-git/promise");
+const { red, green, yellow } = require("colors");
 
-const workPath = path.resolve(__dirname, "../");
-const git = simpleGit(workPath);
+const git = simpleGit(path.resolve(__dirname, "../"));
 
 
 process.on("unhandledRejection", (error) => {
