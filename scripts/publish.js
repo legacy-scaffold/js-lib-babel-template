@@ -1,6 +1,7 @@
 const ora = require("ora");
 const path = require("path");
 const moment = require("moment");
+const jsonfile = require("jsonfile")
 const spawn = require("cross-spawn");
 const simpleGit = require("simple-git/promise");
 const { red, green, yellow } = require("colors");
@@ -36,6 +37,9 @@ process.on("unhandledRejection", (error) => {
     await git.add("*");
     await git.commit(`${moment().format("YYYY年MM月DD日HH点mm分ss秒")}版本提交`);
     spawn.sync("npm", ["version", "patch"]);
+    const { version } = await jsonfile.readFile(path.resolve(__dirname, "../package.json"));
+    console.log(version);
+
     spinner.succeed(green("所有文件提交成功!"));
   } catch (error) {
     spinner.fail(red("文件提交失败!"));
