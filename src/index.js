@@ -12,8 +12,13 @@ class ComponentName extends React.Component {
 
   render() {
     return (
-      <div>{null}</div>)
+      <div>hello words</div>)
   };
 };
 
-// ReactDOM.render(<ComponentName/>,);
+
+(function render() {
+  const mountNode = document.createElement("div");
+  document.body.appendChild(mountNode);
+  ReactDOM.render((<ComponentName />), mountNode);
+})();
