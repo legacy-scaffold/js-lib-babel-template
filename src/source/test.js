@@ -1,2 +1,2 @@
 
-export const test = "hello words";
+export default "hello words";

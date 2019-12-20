@@ -10,6 +10,6 @@ Object.defineProperty(exports, "test", {
   }
 });
 
-var _test = _interopRequireDefault(require("./test.js"));
+var _test = _interopRequireDefault(require("./source/test"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
