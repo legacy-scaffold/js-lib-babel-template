@@ -1,0 +1,9 @@
+/src/
+/config/
+/example/
+.babelrc
+.eslintrc.js
+.gitignore
+.eslintignore
+tsconfig.json
+package-lock.json
