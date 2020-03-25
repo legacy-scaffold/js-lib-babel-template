@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import { Button } from "antd";
 import { test } from "../src";
 
 class ComponentName extends React.Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {};
   };
@@ -16,7 +16,7 @@ class ComponentName extends React.Component {
 
   render() {
     return (
-      <div>hello words</div>)
+      <Button>hello words</Button>)
   };
 };
 

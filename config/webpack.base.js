@@ -16,6 +16,16 @@ module.exports = {
       use: [{ loader: "babel-loader" }],
       exclude: /(node_modules)/
     }, {
+      test: /\.less$/,
+      use: [{
+        loader: "style-loader"
+      }, {
+        loader: "css-loader"
+      }, {
+        loader: "less-loader",
+        options: { javascriptEnabled: true }
+      }]
+    }, {
       test: /\.(png|jpg)/,
       use: [{ loader: "file-loader" }]
     }]
